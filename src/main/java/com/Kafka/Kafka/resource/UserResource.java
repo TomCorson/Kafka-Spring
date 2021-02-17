@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserResource {
     @Autowired
     KafkaTemplate<String,String> kafkaTemplate;
-    private String topic;
+    private static final String TOPIC = "Kafka_Example";
     @GetMapping("/publish/{message}")
     public String post(@PathVariable("message") final String message){
-        kafkaTemplate.send(topic,message);
+        kafkaTemplate.send(TOPIC,message);
         return "Published successfully";
     }
 }
